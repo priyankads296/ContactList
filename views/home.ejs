@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>
+      <%= locals.title %>
+    </title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/home.css">
+    
+  </head >
+  <body>
+    <h1 id="page-heading">
+      <i class="fas fa-address-book"></i>
+      Contact List</h1>
+    <div>
+      <ul id="contact-list">
+        <% for (let i of contact_list){%>
+          <!-- <li id="contact">
+            <span><%= i.name %></span>
+            <span><%= i.phone %></span>
+          </li> -->
+          <li class="contact">
+            <div class="details">
+              <p><%= i.name %></p>
+              <p><%= i.phone %></p>
+            </div>
+            <div class="delete-button">
+              <!-- <a href="/delete-contact/<%=i.phone%>"> params method -->
+              <!-- <a href="/delete-contact/?phone=<%= i.phone %>&name=<%= i.name %>">here contact is deleted using phone and name -->
+              <a href="/delete-contact/?id=<%= i._id %>">  
+                <i class="fas fa-window-close"></i>
+              </a>
+              <!-- it will take us to the controller wherein it will find a contact and delete it -->
+            </div>
+          </li>
+        <%}%>
+      </ul>
+    </div>
+
+    <form action="/create-contact" method="POST" id="form">
+      <input type="text" name="name" placeholder="Enter name" required>
+      <input type="number" name="phone" placeholder="Enter number" required>
+
+      <button type="submit" id="add">Add Contact</button>
+      
+    </form>
+    <script src="/js/home.js" type="text/javascript"></script>
+  </body>
+</html>
